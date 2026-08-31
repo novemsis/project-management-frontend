@@ -1,17 +1,9 @@
-# project_management_frontend
+# VisionFlow Frontend
 
-A new Flutter project.
+## Environment Variablen
+Die App unterstützt folgende `--dart-define` Variablen:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Variable | Beschreibung | Default |
+|---|---|---|
+| `LOCAL_BACKEND_URL` | URL des lokalen Backends | `http://localhost:8080` |
+| `ENVIRONMENT` | Startup-Konfiguration: `local`, `prod` | `local` |
