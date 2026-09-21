@@ -4,10 +4,15 @@ sealed class AppState {
   const AppState();
 
   factory AppState.stopped() = AppStateStopped;
+
   factory AppState.firstBooting() = AppStateFirstBooting;
+
   factory AppState.running() = AppStateRunning;
+
   factory AppState.inactive() = AppStateInactive;
+
   factory AppState.paused() = AppStatePaused;
+
   factory AppState.restarting() = AppStateRestarting;
 }
 

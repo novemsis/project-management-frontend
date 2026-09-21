@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../home/home_page.dart';
 import 'cubit/basic_layout_cubit.dart';
 import 'life_cycle_cubit.dart';
+import 'routing/app_router.dart';
+import 't_colors.dart';
 
 class AppRoot extends ConsumerStatefulWidget {
   final LifeCycleCubit cubit;
@@ -14,21 +15,29 @@ class AppRoot extends ConsumerStatefulWidget {
   ConsumerState<AppRoot> createState() => _AppRootState();
 }
 
-class _AppRootState extends ConsumerState<AppRoot> {
+class _AppRootState extends ConsumerState<AppRoot> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
     ref.read(BasicLayoutCubit.provider.bloc).initialize(deviceWidth: deviceWidth, deviceHeight: deviceHeight);
 
-    return MaterialApp(
-      title: 'VisionFlow',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: MaterialApp.router(
+        title: 'VisionFlow',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: .fromSeed(seedColor: TColors.schemeColor),
+        ),
+        routerConfig: ref.watch(appRouterProvider),
       ),
-      home: HomePage(),
     );
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    widget.cubit.handleLifeCycleEvent(state);
   }
 
   @override

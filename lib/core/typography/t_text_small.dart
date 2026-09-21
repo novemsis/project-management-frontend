@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import '../t_colors.dart';
 import 'basic_text.dart';
 
-class TTextLarge extends StatelessWidget {
+class TTextSmall extends StatelessWidget {
   final String _data;
+  final bool _bold;
   final Color _color;
 
-  const TTextLarge(this._data, {this._color = TColors.textGlobal, super.key});
+  const TTextSmall(this._data, {this._bold = false, this._color = TColors.textGlobal, super.key});
 
   @override
   Widget build(BuildContext context) {
     return BasicText(
       _data,
-      fontSize: TFontSizes.headline,
+      fontSize: TFontSizes.small,
+      bold: _bold,
       color: _color,
     );
   }

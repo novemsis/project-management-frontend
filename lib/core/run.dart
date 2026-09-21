@@ -11,5 +11,11 @@ void run(Startup startup) {
   WidgetsFlutterBinding.ensureInitialized();
 
   LifeCycleCubit cubit = LifeCycleCubit(startup);
-  runApp(ProviderScope(child: AppRoot(cubit: cubit)));
+  final container = startup.initBasicServices(overrides: [LifeCycleCubit.provider.overrideWith((ref) => cubit)]);
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: AppRoot(cubit: cubit),
+    ),
+  );
 }
