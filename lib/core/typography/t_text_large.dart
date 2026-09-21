@@ -7,7 +7,7 @@ class TTextLarge extends StatelessWidget {
   final String _data;
   final Color _color;
 
-  const TTextLarge(this._data, {this._color = TColors.textGlobal, super.key});
+  const TTextLarge(this._data, {this._color = TColors.textPrimary, super.key});
 
   @override
   Widget build(BuildContext context) {

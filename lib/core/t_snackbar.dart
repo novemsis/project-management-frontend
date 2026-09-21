@@ -11,7 +11,7 @@ class TSnackBar {
     SnackBar(
       content: Expanded(child: TTextNormal(message)),
       duration: const Duration(seconds: 6),
-      backgroundColor: TColors.snackBar,
+      backgroundColor: TColors.snackBarBackground,
     ),
   );
 }

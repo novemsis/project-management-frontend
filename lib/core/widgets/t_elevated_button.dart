@@ -14,7 +14,7 @@ class TElevatedButton extends StatelessWidget {
       onPressed: _onPressed,
       child: _child,
       style: TextButton.styleFrom(
-        backgroundColor: TColors.elevatedButton,
+        backgroundColor: TColors.elevatedButtonBackground,
       ),
     );
   }

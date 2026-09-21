@@ -8,7 +8,7 @@ class TTextNormal extends StatelessWidget {
   final bool? bold;
   final Color? _color;
 
-  const TTextNormal(this.data, {this.bold = false, this._color = TColors.textGlobal, super.key});
+  const TTextNormal(this.data, {this.bold = false, this._color = TColors.textPrimary, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TTextNormal extends StatelessWidget {
       data,
       fontSize: TFontSizes.normal,
       bold: bold ?? false,
-      color: _color ?? TColors.textGlobal,
+      color: _color ?? TColors.textPrimary,
     );
   }
 }

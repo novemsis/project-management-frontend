@@ -6,9 +6,9 @@ import 'basic_text.dart';
 class TTextSmall extends StatelessWidget {
   final String _data;
   final bool _bold;
-  final Color _color;
+  final Color? _color;
 
-  const TTextSmall(this._data, {this._bold = false, this._color = TColors.textGlobal, super.key});
+  const TTextSmall(this._data, {this._bold = false, this._color = TColors.textSecondary, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TTextSmall extends StatelessWidget {
       _data,
       fontSize: TFontSizes.small,
       bold: _bold,
-      color: _color,
+      color: _color ?? TColors.textSecondary,
     );
   }
 }

@@ -42,7 +42,7 @@ class _TopBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return TTextLarge(
       title,
-      color: TColors.schemeColor,
+      color: TColors.title,
     );
   }
 }

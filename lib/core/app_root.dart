@@ -28,7 +28,7 @@ class _AppRootState extends ConsumerState<AppRoot> with WidgetsBindingObserver {
         title: 'VisionFlow',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: .fromSeed(seedColor: TColors.schemeColor),
+          colorScheme: .fromSeed(seedColor: TColors.schemeGlobal),
         ),
         routerConfig: ref.watch(appRouterProvider),
       ),

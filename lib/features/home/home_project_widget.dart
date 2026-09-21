@@ -5,6 +5,9 @@ import 'package:intl/intl.dart';
 import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_normal.dart';
+import '../../core/typography/t_text_small.dart';
+import '../../core/widgets/t_divider.dart';
+import '../../core/widgets/text_wrapper.dart';
 import '../../widgets/t_card.dart';
 import '../project/project_model.dart';
 
@@ -21,14 +24,38 @@ class HomeProjectWidget extends StatelessWidget {
       child: Column(
         spacing: TSpacings.p0half,
         children: [
-          TTextNormal(
-            _project.title,
-            bold: true,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TTextNormal('Ziel:'),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(TSpacings.p0),
+                    margin: EdgeInsetsGeometry.only(right: TSpacings.p0),
+                    decoration: BoxDecoration(
+                      color: TColors.largeIconBackground,
+                      borderRadius: BorderRadius.circular(TSpacings.p0),
+                    ),
+                    child: const Icon(
+                      size: TSpacings.p3,
+                      Icons.track_changes,
+                      color: TColors.icon,
+                    ),
+                  ),
+                  TTextNormal(
+                    _project.title,
+                    bold: true,
+                  ),
+                ],
+              ),
+              Icon(Icons.chevron_right),
+            ],
+          ),
+          SizedBox(height: TSpacings.p1),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TTextSmall('Ziel:'),
               if (_project.target != null && _project.target!.isSmarter)
                 Icon(Icons.check, size: TIconSizes.small)
               else if (_project.target != null)
@@ -40,7 +67,7 @@ class HomeProjectWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TTextNormal('Plan:'),
+              TTextSmall('Plan:'),
               if (_project.plan != null && _project.plan!.isDefined)
                 Icon(Icons.check, size: TIconSizes.small)
               else if (_project.plan != null)
@@ -52,7 +79,7 @@ class HomeProjectWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TTextNormal('Entschluss:'),
+              TTextSmall('Entschluss:'),
               if (_project.decision != null && _project.decision!.carryThrough)
                 Icon(Icons.check, size: TIconSizes.small)
               else
@@ -62,21 +89,38 @@ class HomeProjectWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TTextNormal('Umsetzung:'),
-              TTextNormal('${doneRatio}%'),
+              TTextSmall('Umsetzung:'),
+              TTextSmall('${doneRatio}%'),
             ],
           ),
-          if (_project.nextCheck != null)
+          if (_project.nextCheck != null) ...[
+            TDivider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TTextNormal('Kontrolle:'),
-                TTextNormal(
-                  DateFormat('dd.MM.yyyy').format(_project.nextCheck!),
-                  color: DateTime.now().isAfter(_project.nextCheck!) ? TColors.attention : null,
+                TTextSmall('Kontrolle:'),
+                TextWrapper(
+                  backgroundColor: TColors.errorLight,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: TSpacings.p0half),
+                        child: Icon(
+                          Icons.calendar_today_outlined,
+                          size: TIconSizes.small,
+                          color: TColors.error,
+                        ),
+                      ),
+                      TTextSmall(
+                        DateFormat('dd.MM.yyyy').format(_project.nextCheck!),
+                        color: DateTime.now().isAfter(_project.nextCheck!) ? TColors.error : null,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
+          ],
         ],
       ),
     );

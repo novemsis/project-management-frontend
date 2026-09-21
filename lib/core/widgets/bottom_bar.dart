@@ -11,7 +11,7 @@ class BottomBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ColoredBox(
-      color: TColors.bottomBar,
+      color: TColors.bottomBarBackground,
       child: SafeArea(
         top: false,
         child: Row(
@@ -21,7 +21,7 @@ class BottomBar extends ConsumerWidget {
               child: IconButton(
                 iconSize: TIconSizes.normal,
                 padding: EdgeInsetsGeometry.all(0),
-                icon: Icon(Icons.home_outlined, color: TColors.textGlobal),
+                icon: Icon(Icons.home_outlined, color: TColors.textPrimary),
                 onPressed: () => ref.read(appRouterProvider).go('/'),
               ),
             ),

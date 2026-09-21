@@ -9,13 +9,13 @@ import '../widgets/top_bar.dart';
 
 class BasicLayoutWrapper extends ConsumerWidget {
   final Widget child;
-  final bool _showTitle;
+  final String? _title;
   final bool _showTitleBar;
   final bool _showBottomBar;
 
   const BasicLayoutWrapper({
     required this.child,
-    this._showTitle = true,
+    this._title = 'VisionFlow',
     this._showTitleBar = true,
     this._showBottomBar = true,
     super.key,
@@ -33,7 +33,7 @@ class BasicLayoutWrapper extends ConsumerWidget {
             if (_showTitleBar)
               Padding(
                 padding: const EdgeInsets.only(bottom: TSpacings.p1),
-                child: TopBar(title: _showTitle ? 'VisionFlow' : null),
+                child: TopBar(title: _title != null ? _title : null),
               ),
             Expanded(
               child: SingleChildScrollView(

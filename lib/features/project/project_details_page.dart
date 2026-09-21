@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
-import '../../core/typography/t_text_large.dart';
-import '../../core/typography/t_text_normal.dart';
+import '../../core/typography/t_text_small.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
 import '../../widgets/t_card.dart';
 import 'project_cubit.dart';
@@ -23,13 +23,21 @@ class ProjectDetailsPage extends ConsumerWidget {
 
   Widget _getContent(BuildContext context, ProjectModel project) {
     return BasicLayoutWrapper(
+      title: project.title,
       child: Column(
         children: [
-          Center(
-            child: TTextLarge(project.title),
-          ),
           TCard(
-            child: TTextNormal('Project ID: ${_projectId}'),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TTextSmall('start date: ${DateFormat('dd.MM.yyyy HH:mm').format(project.projectStart ?? project.createdAt)}'),
+                    TTextSmall('done ratio: ${project.doneRatio != null ? project.doneRatio! + '%' : 'n/a'}'),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -31,7 +31,7 @@ class LoginPage extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: TSpacings.p2),
               child: TTextLarge(
                 'VisionFlow',
-                color: TColors.schemeColor,
+                color: TColors.title,
               ),
             ),
             TCard(
