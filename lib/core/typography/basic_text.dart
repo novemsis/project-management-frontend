@@ -6,10 +6,9 @@ class BasicText extends StatelessWidget {
   final String data;
   final Color? color;
   final double fontSize;
+  final int fontWeight;
 
-  final bool bold;
-
-  const BasicText(this.data, {this.color = TColors.textPrimary, this.fontSize = TFontSizes.normal, this.bold = false, super.key});
+  const BasicText(this.data, {this.color = TColors.textPrimary, this.fontSize = TFontSizes.normal, this.fontWeight = 400, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class BasicText extends StatelessWidget {
       style: TextStyle(
         inherit: false,
         color: color,
-        fontWeight: bold ? FontWeight(700) : FontWeight(400),
+        fontWeight: FontWeight(fontWeight),
         fontSize: 20 * fontSize,
       ),
     );

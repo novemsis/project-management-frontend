@@ -15,7 +15,7 @@ class TTextSmall extends StatelessWidget {
     return BasicText(
       _data,
       fontSize: TFontSizes.small,
-      bold: _bold,
+      fontWeight: _bold ? 600 : 400,
       color: _color ?? TColors.textSecondary,
     );
   }

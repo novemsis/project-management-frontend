@@ -15,7 +15,7 @@ class TTextNormal extends StatelessWidget {
     return BasicText(
       data,
       fontSize: TFontSizes.normal,
-      bold: bold ?? false,
+      fontWeight: (bold ?? false) ? 700 : 400,
       color: _color ?? TColors.textPrimary,
     );
   }

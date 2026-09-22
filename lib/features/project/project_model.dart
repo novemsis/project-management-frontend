@@ -26,6 +26,10 @@ class ProjectModel {
     required this.doneRatio,
     required this.loadingTime,
   });
+
+  bool isActive() {
+    return (projectStart != null ? loadingTime.isAfter(projectStart!) : true) && (projectEnd != null ? loadingTime.isBefore(projectEnd!) : true);
+  }
 }
 
 class ProjectTargetModel {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/t_sizes.dart';
+import '../../core/typography/t_text_large.dart';
+import '../../core/typography/t_text_small.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
 import '../project/project_model.dart';
 import 'home_cubit.dart';
@@ -22,6 +24,26 @@ class HomePage extends ConsumerWidget {
     return BasicLayoutWrapper(
       child: Column(
         children: [
+          Row(
+            children: [
+              TTextLarge(
+                'Deine Projekte',
+                bold: true,
+              ),
+            ],
+          ),
+          SizedBox(height: TSpacings.p0),
+          Row(
+            children: [
+              Container(
+                width: 250,
+                child: TTextSmall(
+                  'Hier findest du eine Übersicht über all deine VisionFlow Projekte',
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: TSpacings.p1),
           ListView.builder(
             shrinkWrap: true,
             itemCount: projects.length,

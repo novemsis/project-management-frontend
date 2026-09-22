@@ -19,6 +19,7 @@ class HomeProjectWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final doneRatio = _project.doneRatio != null ? double.parse(_project.doneRatio!).round() : null;
+    final bool? checkDateIsOver = _project.nextCheck != null ? DateTime.now().isAfter(_project.nextCheck!) : null;
     return TCard(
       onTap: () => context.push('/project/${_project.id}'),
       child: Column(
@@ -26,25 +27,45 @@ class HomeProjectWidget extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(TSpacings.p0),
                     margin: EdgeInsetsGeometry.only(right: TSpacings.p0),
                     decoration: BoxDecoration(
-                      color: TColors.largeIconBackground,
+                      color: TColors.schemeGlobalBackground,
                       borderRadius: BorderRadius.circular(TSpacings.p0),
                     ),
                     child: const Icon(
                       size: TSpacings.p3,
                       Icons.track_changes,
-                      color: TColors.icon,
+                      color: TColors.schemeGlobal,
                     ),
                   ),
-                  TTextNormal(
-                    _project.title,
-                    bold: true,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TTextNormal(
+                        _project.title,
+                        bold: true,
+                      ),
+                      if (_project.isActive()) ...[
+                        SizedBox(
+                          height: TSpacings.p0half,
+                        ),
+                        TextWrapper(
+                          backgroundColor: TColors.schemeGlobalBackground,
+                          child: TTextSmall(
+                            'Aktiv',
+                            color: TColors.schemeGlobal,
+                            bold: true,
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ],
               ),
@@ -57,11 +78,11 @@ class HomeProjectWidget extends StatelessWidget {
             children: [
               TTextSmall('Ziel:'),
               if (_project.target != null && _project.target!.isSmarter)
-                Icon(Icons.check, size: TIconSizes.small)
+                SuccessIcon()
               else if (_project.target != null)
-                Icon(Icons.warning_amber_rounded, size: TIconSizes.small)
+                WarningIcon()
               else
-                Icon(Icons.close, size: TIconSizes.small),
+                TTextSmall('-'),
             ],
           ),
           Row(
@@ -69,21 +90,18 @@ class HomeProjectWidget extends StatelessWidget {
             children: [
               TTextSmall('Plan:'),
               if (_project.plan != null && _project.plan!.isDefined)
-                Icon(Icons.check, size: TIconSizes.small)
+                SuccessIcon()
               else if (_project.plan != null)
                 Icon(Icons.warning_amber_rounded, size: TIconSizes.small)
               else
-                Icon(Icons.close, size: TIconSizes.small),
+                TTextSmall('-'),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TTextSmall('Entschluss:'),
-              if (_project.decision != null && _project.decision!.carryThrough)
-                Icon(Icons.check, size: TIconSizes.small)
-              else
-                Icon(Icons.close, size: TIconSizes.small),
+              if (_project.decision != null && _project.decision!.carryThrough) SuccessIcon() else TTextSmall('-'),
             ],
           ),
           Row(
@@ -93,14 +111,14 @@ class HomeProjectWidget extends StatelessWidget {
               TTextSmall('${doneRatio}%'),
             ],
           ),
-          if (_project.nextCheck != null) ...[
+          if (_project.nextCheck != null && checkDateIsOver != null) ...[
             TDivider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TTextSmall('Kontrolle:'),
                 TextWrapper(
-                  backgroundColor: TColors.errorLight,
+                  backgroundColor: checkDateIsOver ? TColors.errorLight : TColors.successLight,
                   child: Row(
                     children: [
                       Padding(
@@ -108,12 +126,12 @@ class HomeProjectWidget extends StatelessWidget {
                         child: Icon(
                           Icons.calendar_today_outlined,
                           size: TIconSizes.small,
-                          color: TColors.error,
+                          color: checkDateIsOver ? TColors.error : TColors.success,
                         ),
                       ),
                       TTextSmall(
                         DateFormat('dd.MM.yyyy').format(_project.nextCheck!),
-                        color: DateTime.now().isAfter(_project.nextCheck!) ? TColors.error : null,
+                        color: checkDateIsOver ? TColors.error : TColors.success,
                       ),
                     ],
                   ),
@@ -125,4 +143,48 @@ class HomeProjectWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class IconWrapper extends StatelessWidget {
+  final Color _color;
+  final Widget _icon;
+
+  IconWrapper({required this._icon, required this._color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: AlignmentGeometry.topStart,
+      decoration: BoxDecoration(
+        color: _color,
+        borderRadius: BorderRadius.circular(TSpacings.p1),
+      ),
+      padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
+      child: _icon,
+    );
+  }
+}
+
+class SuccessIcon extends IconWrapper {
+  SuccessIcon()
+    : super(
+        color: TColors.successLight,
+        icon: Icon(
+          Icons.check,
+          size: TIconSizes.small,
+          color: TColors.success,
+        ),
+      );
+}
+
+class WarningIcon extends IconWrapper {
+  WarningIcon()
+    : super(
+        color: TColors.warningLight,
+        icon: Icon(
+          Icons.warning_amber_rounded,
+          size: TIconSizes.small,
+          color: TColors.warning,
+        ),
+      );
 }
