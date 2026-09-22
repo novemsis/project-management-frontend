@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TColors {
   static const Color schemeGlobal = Color(0xFF5B3DF5);
   static const Color title = Color(0xFF5B3DF5);
-  static const schemeGlobalBackground = Color(0xFFEEEAFE);
+  static const schemeGlobalBackground = Color(0x99E2E0FF);
   static const Color backgroundGlobal = Color(0xFFF8F9FD);
   static const Color bottomBarBackground = Color(0xFFFFFFFF);
   static const Color cardBackground = Color(0xFFFFFFFF);

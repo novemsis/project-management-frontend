@@ -27,5 +27,7 @@ class BasicText extends StatelessWidget {
 class TFontSizes {
   static const double headline = 1.5;
   static const double normal = 1;
+  static const double normal_small = 0.8;
   static const double small = 0.7;
+  static const double xs = 0.6;
 }

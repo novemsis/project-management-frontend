@@ -16,7 +16,7 @@ class TextWrapper extends StatelessWidget {
         borderRadius: BorderRadius.circular(TSpacings.p1),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(TSpacings.p1half, TSpacings.p0half, TSpacings.p1half, TSpacings.p0half),
+        padding: const EdgeInsets.fromLTRB(TSpacings.p1half, TSpacings.p0quarter, TSpacings.p1half, TSpacings.p0quarter),
         child: _child,
       ),
     );

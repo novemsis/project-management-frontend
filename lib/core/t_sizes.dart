@@ -1,4 +1,5 @@
 class TSpacings {
+  static const double p0quarter = 2;
   static const double p0half = 4;
   static const double p0 = 8;
   static const double p1half = 12;
