@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
@@ -19,7 +20,7 @@ class ProjectDetailsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BasicLayoutWrapper(
-      title: null,
+      backNavigationAction: context.pop,
       child: switch (ref.watch(ProjectCubit.provider(_projectId))) {
         ProjectStateSuccess(:final project) => _getContent(context, project),
         _ => SizedBox.shrink(),

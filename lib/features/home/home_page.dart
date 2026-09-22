@@ -22,6 +22,8 @@ class HomePage extends ConsumerWidget {
 
   Widget _getContent(List<ProjectModel> projects) {
     return BasicLayoutWrapper(
+      showTitleBar: false,
+      title: null,
       child: Column(
         children: [
           Row(

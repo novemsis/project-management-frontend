@@ -12,12 +12,14 @@ class BasicLayoutWrapper extends ConsumerWidget {
   final String? _title;
   final bool _showTitleBar;
   final bool _showBottomBar;
+  final void Function()? _backNavigationAction;
 
-  const BasicLayoutWrapper({
+  BasicLayoutWrapper({
     required this.child,
     this._title = 'VisionFlow',
     this._showTitleBar = true,
     this._showBottomBar = true,
+    this._backNavigationAction,
     super.key,
   });
 
@@ -33,7 +35,15 @@ class BasicLayoutWrapper extends ConsumerWidget {
             if (_showTitleBar)
               Padding(
                 padding: const EdgeInsets.only(bottom: TSpacings.p1),
-                child: TopBar(title: _title != null ? _title : null),
+                child: Center(
+                  child: SizedBox(
+                    width: width,
+                    child: TopBar(
+                      title: _title != null ? _title : null,
+                      backNavigationAction: _backNavigationAction,
+                    ),
+                  ),
+                ),
               ),
             Expanded(
               child: SingleChildScrollView(
