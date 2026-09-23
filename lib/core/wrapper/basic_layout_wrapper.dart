@@ -13,6 +13,7 @@ class BasicLayoutWrapper extends ConsumerWidget {
   final bool _showTitleBar;
   final bool _showBottomBar;
   final void Function()? _backNavigationAction;
+  final void Function()? _refreshAction;
 
   BasicLayoutWrapper({
     required this.child,
@@ -20,6 +21,7 @@ class BasicLayoutWrapper extends ConsumerWidget {
     this._showTitleBar = true,
     this._showBottomBar = true,
     this._backNavigationAction,
+    this._refreshAction,
     super.key,
   });
 
@@ -46,12 +48,17 @@ class BasicLayoutWrapper extends ConsumerWidget {
                 ),
               ),
             Expanded(
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Center(
-                  child: SizedBox(
-                    width: width,
-                    child: child,
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  _refreshAction?.call();
+                },
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                  child: Center(
+                    child: SizedBox(
+                      width: width,
+                      child: child,
+                    ),
                   ),
                 ),
               ),

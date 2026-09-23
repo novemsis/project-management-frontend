@@ -17,15 +17,16 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return switch (ref.watch(HomeCubit.provider)) {
-      HomeStateSuccess(:final projects) => _getContent(projects),
+      HomeStateSuccess(:final projects) => _getContent(projects, ref),
       _ => SizedBox.shrink(),
     };
   }
 
-  Widget _getContent(List<ProjectModel> projects) {
+  Widget _getContent(List<ProjectModel> projects, WidgetRef ref) {
     return BasicLayoutWrapper(
       showTitleBar: false,
       title: null,
+      refreshAction: ref.read(HomeCubit.provider.bloc).loadProjects,
       child: Column(
         children: [
           Row(
@@ -48,14 +49,11 @@ class HomePage extends ConsumerWidget {
             ],
           ),
           SizedBox(height: TSpacings.p1),
-          ListView.builder(
+          ListView(
             padding: EdgeInsetsGeometry.all(0),
             shrinkWrap: true,
-            itemCount: projects.length,
-            itemBuilder: (context, index) {
-              return HomeProjectWidget(projects[index]);
-            },
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
+            children: [...projects.map((project) => HomeProjectWidget(project))],
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: TSpacings.p0),

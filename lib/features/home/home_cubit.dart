@@ -19,10 +19,10 @@ class HomeCubit extends Cubit<HomeState> {
   final ApiCubit _apiCubit;
 
   HomeCubit({required this._apiCubit}) : super(HomeState.initial()) {
-    _loadProjects();
+    loadProjects();
   }
 
-  void _loadProjects() async {
+  void loadProjects() async {
     emit(HomeState.loading());
 
     final Response<dynamic>? response = await _apiCubit.performCallToRoute(path: '/project/get-all', method: HttpMethod.get, authenticated: true);
