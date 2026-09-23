@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../t_colors.dart';
 import '../t_sizes.dart';
 import '../typography/t_text_large.dart';
+import 't_icon.dart';
 
 class TopBar extends StatelessWidget {
   final String? title;
@@ -40,9 +41,9 @@ class _TopBarBackButton extends StatelessWidget {
           color: TColors.schemeGlobalBackground,
           borderRadius: BorderRadius.circular(TSpacings.p2),
         ),
-        child: Icon(
+        child: TIcon(
           Icons.arrow_back_ios_new,
-          size: TSpacings.p1,
+          size: TIconSizes.small,
         ),
       ),
     );

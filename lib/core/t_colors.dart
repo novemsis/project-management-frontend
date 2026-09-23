@@ -11,7 +11,6 @@ class TColors {
   static const Color textSecondary = Color(0xFF68728A);
   static const Color textFieldBackground = Colors.white24;
   static Color attention = Colors.red.shade900;
-  static Color snackBarBackground = Colors.deepPurple.shade400;
   static Color elevatedButtonText = Colors.white;
   static Color elevatedButtonBackground = Colors.deepPurple;
 

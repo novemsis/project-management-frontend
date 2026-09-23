@@ -26,9 +26,9 @@ class BasicLayoutWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final double width = ref.read(BasicLayoutCubit.provider.bloc).getWidth();
-    return Material(
-      color: TColors.backgroundGlobal,
-      child: SafeArea(
+    return Scaffold(
+      backgroundColor: TColors.backgroundGlobal,
+      body: SafeArea(
         bottom: false,
         child: Column(
           children: [

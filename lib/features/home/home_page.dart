@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_large.dart';
 import '../../core/typography/t_text_small.dart';
+import '../../core/widgets/t_icon.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
 import '../project/project_model.dart';
 import 'home_cubit.dart';
@@ -47,19 +49,20 @@ class HomePage extends ConsumerWidget {
           ),
           SizedBox(height: TSpacings.p1),
           ListView.builder(
+            padding: EdgeInsetsGeometry.all(0),
             shrinkWrap: true,
             itemCount: projects.length,
             itemBuilder: (context, index) {
               return HomeProjectWidget(projects[index]);
             },
-            physics: NeverScrollableScrollPhysics(),
+            physics: AlwaysScrollableScrollPhysics(),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, TSpacings.p0),
+            padding: const EdgeInsets.only(bottom: TSpacings.p0),
             child: IconButton(
-              // ToDo: implement functionality for adding new Project
+              // ToDo: add new Project
               onPressed: () => print('pressed on add new Project'),
-              icon: Icon(Icons.add_circle_outline),
+              icon: TIcon(Icons.add_circle_outline, color: TColors.textPrimary),
               iconSize: TIconSizes.normal,
             ),
           ),

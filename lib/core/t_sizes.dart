@@ -11,9 +11,11 @@ class TSpacings {
   static const double p5 = 48;
   static const double p6 = 56;
   static const double p8 = 72;
+  static const double p9 = 80;
 }
 
 class TIconSizes {
+  static const double large = 40;
   static const double normal = 30;
   static const double small = 16;
 }

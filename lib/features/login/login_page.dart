@@ -54,6 +54,7 @@ class LoginPage extends ConsumerWidget {
                       ),
                     ),
                     TTextButton(
+                      // ToDo: register account
                       onPressed: () => print('hi'),
                       child: TTextSmall('register new Account'),
                     ),
@@ -62,7 +63,7 @@ class LoginPage extends ConsumerWidget {
                         final result = await ref
                             .read(AccountCubit.provider.bloc)
                             .login(_formKey.currentState!.fields.first.value as String, _formKey.currentState!.fields.elementAt(1).value as String);
-                        if (!result) TSnackBar.displayText(context, 'error on login');
+                        if (!result) TSnackBar.error(context, 'error on login');
                       },
                       child: TTextSmall(
                         'Login',

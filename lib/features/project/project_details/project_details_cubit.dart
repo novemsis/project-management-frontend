@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:chopper/chopper.dart' hide HttpMethod;
 import 'package:riverbloc/riverbloc.dart';
 
-import '../../core/api/api.dart';
-import '../../core/api/api_cubit.dart';
-import '../project/project_model.dart';
+import '../../../core/api/api.dart';
+import '../../../core/api/api_cubit.dart';
+import '../project_model.dart';
 
-class ProjectCubit extends Cubit<ProjectState> {
-  static final provider = BlocProvider.family.autoDispose<ProjectCubit, ProjectState, String>((ref, projectId) {
-    final projectCubit = ProjectCubit(
+class ProjectDetailsCubit extends Cubit<ProjectDetailsState> {
+  static final provider = BlocProvider.family.autoDispose<ProjectDetailsCubit, ProjectDetailsState, String>((ref, projectId) {
+    final projectCubit = ProjectDetailsCubit(
       projectId: projectId,
       apiCubit: ref.read(ApiCubit.provider.bloc),
     );
@@ -20,12 +20,12 @@ class ProjectCubit extends Cubit<ProjectState> {
   final String _projectId;
   final ApiCubit _apiCubit;
 
-  ProjectCubit({required this._projectId, required this._apiCubit}) : super(ProjectState.initial()) {
+  ProjectDetailsCubit({required this._projectId, required this._apiCubit}) : super(ProjectDetailsState.initial()) {
     _loadProject();
   }
 
   void _loadProject() async {
-    emit(ProjectState.loading());
+    emit(ProjectDetailsState.loading());
 
     final Response<dynamic>? response = await _apiCubit.performCallToRoute(
       path: '/project/${_projectId}',
@@ -33,13 +33,13 @@ class ProjectCubit extends Cubit<ProjectState> {
       authenticated: true,
     );
     if (!(response?.isSuccessful ?? false) || response?.body == null) {
-      emit(ProjectState.error());
+      emit(ProjectDetailsState.error());
       return;
     }
     final loadingTime = DateTime.now();
 
     final body = jsonDecode(response!.body.toString());
-    emit(ProjectState.success(buildModelFromRequestBody(body, loadingTime)));
+    emit(ProjectDetailsState.success(buildModelFromRequestBody(body, loadingTime)));
 
     return;
   }
@@ -101,34 +101,34 @@ class ProjectCubit extends Cubit<ProjectState> {
   }
 }
 
-sealed class ProjectState {
-  const ProjectState();
+sealed class ProjectDetailsState {
+  const ProjectDetailsState();
 
-  factory ProjectState.initial() = ProjectStateInitial;
+  factory ProjectDetailsState.initial() = ProjectDetailsStateInitial;
 
-  factory ProjectState.loading() = ProjectStateLoading;
+  factory ProjectDetailsState.loading() = ProjectDetailsStateLoading;
 
-  factory ProjectState.success(ProjectModel project) = ProjectStateSuccess;
+  factory ProjectDetailsState.success(ProjectModel project) = ProjectDetailsStateSuccess;
 
-  factory ProjectState.error() = ProjectStateError;
+  factory ProjectDetailsState.error() = ProjectDetailsStateError;
 }
 
-final class ProjectStateInitial extends ProjectState {
-  const ProjectStateInitial();
+final class ProjectDetailsStateInitial extends ProjectDetailsState {
+  const ProjectDetailsStateInitial();
 }
 
-final class ProjectStateLoading extends ProjectState {
-  const ProjectStateLoading();
+final class ProjectDetailsStateLoading extends ProjectDetailsState {
+  const ProjectDetailsStateLoading();
 }
 
-final class ProjectStateSuccess extends ProjectState {
+final class ProjectDetailsStateSuccess extends ProjectDetailsState {
   final ProjectModel _project;
 
-  const ProjectStateSuccess(this._project);
+  const ProjectDetailsStateSuccess(this._project);
 
   ProjectModel get project => _project;
 }
 
-final class ProjectStateError extends ProjectState {
-  const ProjectStateError();
+final class ProjectDetailsStateError extends ProjectDetailsState {
+  const ProjectDetailsStateError();
 }
