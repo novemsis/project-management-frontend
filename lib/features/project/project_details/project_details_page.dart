@@ -68,17 +68,15 @@ class ProjectDetailsPage extends ConsumerWidget {
                             project.title,
                             bold: true,
                           ),
-                          if (project.isActive()) ...[
-                            SizedBox(height: TSpacings.p0half),
-                            TextWrapper(
-                              backgroundColor: TColors.successLight,
-                              child: TTextXS(
-                                'Aktiv',
-                                color: TColors.success,
-                                bold: true,
-                              ),
+                          SizedBox(height: TSpacings.p0half),
+                          TextWrapper(
+                            backgroundColor: project.isActive() ? TColors.successLight : TColors.inactiveLight,
+                            child: TTextXS(
+                              project.isActive() ? 'Aktiv' : 'Inaktiv',
+                              color: project.isActive() ? TColors.success : TColors.inactive,
+                              bold: true,
                             ),
-                          ],
+                          ),
                         ],
                       ),
                     ],

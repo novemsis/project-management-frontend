@@ -22,4 +22,7 @@ class TColors {
 
   static const error = Color(0xFFFF2222);
   static const errorLight = Color(0xFFFFE2E2);
+
+  static const inactive = Color(0xFF5E6983);
+  static const inactiveLight = Color(0xFFDADADA);
 }

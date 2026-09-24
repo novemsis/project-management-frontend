@@ -51,19 +51,15 @@ class HomeProjectWidget extends StatelessWidget {
                             _project.title,
                             bold: true,
                           ),
-                          if (_project.isActive()) ...[
-                            SizedBox(
-                              height: TSpacings.p0half,
+                          SizedBox(height: TSpacings.p0half),
+                          TextWrapper(
+                            backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
+                            child: TTextSmall(
+                              _project.isActive() ? 'Aktiv' : 'Inaktiv',
+                              color: _project.isActive() ? TColors.success : TColors.inactive,
+                              bold: true,
                             ),
-                            TextWrapper(
-                              backgroundColor: TColors.successLight,
-                              child: TTextSmall(
-                                'Aktiv',
-                                color: TColors.success,
-                                bold: true,
-                              ),
-                            ),
-                          ],
+                          ),
                         ],
                       ),
                     ],
