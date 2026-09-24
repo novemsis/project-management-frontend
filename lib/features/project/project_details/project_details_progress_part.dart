@@ -22,7 +22,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
     final bool isPlanned = isSmarter && (_project.plan?.isDefined ?? false);
     final bool isDecided = isSmarter && isPlanned && (_project.decision?.carryThrough ?? false);
     final bool isTodoDone = isSmarter && isPlanned && isDecided && (!_project.toDos.any((toDo) => !toDo.isDone));
-    final bool isChecked = isSmarter && isPlanned && isDecided && isTodoDone && double.tryParse(_project.doneRatio ?? '0')?.round() == 100;
+    final bool isChecked = isSmarter && isPlanned && isDecided && isTodoDone && donePercentage == 100;
 
     return TCard(
       child: Column(

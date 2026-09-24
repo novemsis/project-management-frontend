@@ -45,9 +45,12 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TTextXS('Projekt', bold: true, color: TColors.schemeGlobal),
-                      TTextNormalSmall(
-                        _project.title,
-                        bold: true,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: 140),
+                        child: TTextNormalSmall(
+                          _project.title,
+                          bold: true,
+                        ),
                       ),
                       SizedBox(height: TSpacings.p0half),
                       TextWrapper(

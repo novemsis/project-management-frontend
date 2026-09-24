@@ -9,6 +9,7 @@ import '../project_model.dart';
 import 'project_details_cubit.dart';
 import 'project_details_general_part.dart';
 import 'project_details_progress_part.dart';
+import 'project_details_target_part.dart';
 
 class ProjectDetailsPage extends ConsumerWidget {
   final String _projectId;
@@ -34,6 +35,8 @@ class ProjectDetailsPage extends ConsumerWidget {
         ProjectDetailsGeneralPart(project),
         SizedBox(height: TSpacings.p0),
         ProjectDetailsProgressPart(project),
+        SizedBox(height: TSpacings.p0),
+        ProjectDetailsTargetPart(project),
       ],
     );
   }

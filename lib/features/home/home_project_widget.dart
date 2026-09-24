@@ -44,23 +44,27 @@ class HomeProjectWidget extends StatelessWidget {
                         ),
                         child: TIcon(Icons.track_changes),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TTextNormal(
-                            _project.title,
-                            bold: true,
-                          ),
-                          SizedBox(height: TSpacings.p0half),
-                          TextWrapper(
-                            backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
-                            child: TTextSmall(
-                              _project.isActive() ? 'Aktiv' : 'Inaktiv',
-                              color: _project.isActive() ? TColors.success : TColors.inactive,
+                      SizedBox(
+                        width: 230,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TTextNormal(
+                              _project.title,
                               bold: true,
+                              textOverflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: TSpacings.p0half),
+                            TextWrapper(
+                              backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
+                              child: TTextSmall(
+                                _project.isActive() ? 'Aktiv' : 'Inaktiv',
+                                color: _project.isActive() ? TColors.success : TColors.inactive,
+                                bold: true,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
