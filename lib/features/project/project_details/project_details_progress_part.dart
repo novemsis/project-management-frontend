@@ -16,6 +16,14 @@ class ProjectDetailsProgressPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final donePercentage = _project.doneRatio != null ? double.parse(_project.doneRatio!).round() * 100 : 0;
+
+    final bool isSmarter = _project.target?.isSmarter ?? false;
+    final bool isPlanned = isSmarter && (_project.plan?.isDefined ?? false);
+    final bool isDecided = isSmarter && isPlanned && (_project.decision?.carryThrough ?? false);
+    final bool isTodoDone = isSmarter && isPlanned && isDecided && (!_project.toDos.any((toDo) => !toDo.isDone));
+    final bool isChecked = isSmarter && isPlanned && isDecided && isTodoDone && double.tryParse(_project.doneRatio ?? '0')?.round() == 100;
+
     return TCard(
       child: Column(
         children: [
@@ -24,10 +32,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
             children: [
               TTextNormalSmall('Projektfortschritt'),
               TextWrapper(
-                child: TTextXS(
-                  (_project.doneRatio ?? '0') + '%',
-                  color: TColors.inactive,
-                ),
+                child: TTextXS('${donePercentage}%', color: TColors.inactive),
                 backgroundColor: TColors.inactiveLight,
               ),
             ],
@@ -37,99 +42,43 @@ class ProjectDetailsProgressPart extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Container(
-                    alignment: AlignmentGeometry.topStart,
-                    decoration: BoxDecoration(
-                      color: TColors.schemeGlobal,
-                      borderRadius: BorderRadius.circular(TSpacings.p1),
-                    ),
-                    padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
-                    child: TIcon(
-                      Icons.check,
-                      size: TIconSizes.small,
-                      color: TColors.textWhite,
-                    ),
-                  ),
+                  _getProgressIcon(Icons.check, isSmarter),
                   SizedBox(height: TSpacings.p0half),
                   TTextXS('Ziel'),
                 ],
               ),
-              _getConnectingLine(color: TColors.schemeGlobal, indent: TSpacings.p0half, endIndent: TSpacings.p0half),
+              _getConnectingLine(
+                color: isPlanned ? TColors.schemeGlobal : TColors.inactiveLight,
+                indent: TSpacings.p0half,
+                endIndent: TSpacings.p0half,
+              ),
               Column(
                 children: [
-                  Container(
-                    alignment: AlignmentGeometry.topStart,
-                    decoration: BoxDecoration(
-                      color: TColors.schemeGlobal,
-                      borderRadius: BorderRadius.circular(TSpacings.p1),
-                    ),
-                    padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
-                    child: TIcon(
-                      Icons.psychology,
-                      size: TIconSizes.small,
-                      color: TColors.textWhite,
-                    ),
-                  ),
+                  _getProgressIcon(Icons.psychology, isPlanned),
                   SizedBox(height: TSpacings.p0half),
                   TTextXS('Plan'),
                 ],
               ),
-              _getConnectingLine(color: TColors.schemeGlobal, indent: TSpacings.p0half),
+              _getConnectingLine(color: isDecided ? TColors.schemeGlobal : TColors.inactiveLight, indent: TSpacings.p0half),
               Column(
                 children: [
-                  Container(
-                    alignment: AlignmentGeometry.topStart,
-                    decoration: BoxDecoration(
-                      color: TColors.schemeGlobal,
-                      borderRadius: BorderRadius.circular(TSpacings.p1),
-                    ),
-                    padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
-                    child: TIcon(
-                      Icons.crisis_alert,
-                      size: TIconSizes.small,
-                      color: TColors.textWhite,
-                    ),
-                  ),
+                  _getProgressIcon(Icons.crisis_alert, isDecided),
                   SizedBox(height: TSpacings.p0half),
                   TTextXS('Entsch.'),
                 ],
               ),
-              _getConnectingLine(color: TColors.schemeGlobal),
+              _getConnectingLine(color: isTodoDone ? TColors.schemeGlobal : TColors.inactiveLight),
               Column(
                 children: [
-                  Container(
-                    alignment: AlignmentGeometry.topStart,
-                    decoration: BoxDecoration(
-                      color: TColors.schemeGlobal,
-                      borderRadius: BorderRadius.circular(TSpacings.p1),
-                    ),
-                    padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
-                    child: TIcon(
-                      Icons.checklist,
-                      size: TIconSizes.small,
-                      color: TColors.textWhite,
-                    ),
-                  ),
+                  _getProgressIcon(Icons.checklist, isTodoDone),
                   SizedBox(height: TSpacings.p0half),
                   TTextXS('ToDos'),
                 ],
               ),
-              _getConnectingLine(color: TColors.schemeGlobal),
+              _getConnectingLine(color: isChecked ? TColors.schemeGlobal : TColors.inactiveLight),
               Column(
                 children: [
-                  Container(
-                    alignment: AlignmentGeometry.topStart,
-                    decoration: BoxDecoration(
-                      color: TColors.schemeGlobal,
-                      borderRadius: BorderRadius.circular(TSpacings.p1),
-                    ),
-                    padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
-                    child: TIcon(
-                      Icons.event_repeat,
-                      size: TIconSizes.small,
-                      color: TColors.textWhite,
-                    ),
-                  ),
+                  _getProgressIcon(Icons.event_repeat, isChecked),
                   SizedBox(height: TSpacings.p0half),
                   TTextXS('Check'),
                 ],
@@ -137,6 +86,21 @@ class ProjectDetailsProgressPart extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _getProgressIcon(IconData icon, bool isFulfilled) {
+    return Container(
+      decoration: BoxDecoration(
+        color: isFulfilled ? TColors.schemeGlobal : TColors.inactiveLight,
+        borderRadius: BorderRadius.circular(TSpacings.p1),
+      ),
+      padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
+      child: TIcon(
+        icon,
+        size: TIconSizes.small,
+        color: isFulfilled ? TColors.textWhite : TColors.inactiveLight,
       ),
     );
   }

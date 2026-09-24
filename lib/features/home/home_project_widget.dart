@@ -103,7 +103,7 @@ class HomeProjectWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TTextSmall('Umsetzung:'),
-                  if (doneRatio != null) TTextSmall('${doneRatio}%') else TTextSmall('-'),
+                  if (doneRatio != null) TTextSmall('${doneRatio * 100}%') else TTextSmall('-'),
                 ],
               ),
               if (_project.nextCheck != null && checkDateIsOver != null) ...[
