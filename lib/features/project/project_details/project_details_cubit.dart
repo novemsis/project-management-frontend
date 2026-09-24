@@ -21,10 +21,10 @@ class ProjectDetailsCubit extends Cubit<ProjectDetailsState> {
   final ApiCubit _apiCubit;
 
   ProjectDetailsCubit({required this._projectId, required this._apiCubit}) : super(ProjectDetailsState.initial()) {
-    _loadProject();
+    loadProject();
   }
 
-  void _loadProject() async {
+  void loadProject() async {
     emit(ProjectDetailsState.loading());
 
     final Response<dynamic>? response = await _apiCubit.performCallToRoute(

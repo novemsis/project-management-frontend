@@ -48,19 +48,26 @@ class BasicLayoutWrapper extends ConsumerWidget {
                 ),
               ),
             Expanded(
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  _refreshAction?.call();
-                },
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                  child: Center(
-                    child: SizedBox(
-                      width: width,
-                      child: child,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      _refreshAction?.call();
+                    },
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                      child: Center(
+                        child: SizedBox(
+                          width: width,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                            child: child,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
             if (_showBottomBar) BottomBar(),

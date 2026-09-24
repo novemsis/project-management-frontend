@@ -25,6 +25,7 @@ class ProjectDetailsPage extends ConsumerWidget {
     _registerListeners(context, ref);
     return BasicLayoutWrapper(
       backNavigationAction: context.pop,
+      refreshAction: ref.read(ProjectDetailsCubit.provider(_projectId).bloc).loadProject,
       child: switch (ref.watch(ProjectDetailsCubit.provider(_projectId))) {
         ProjectDetailsStateSuccess(:final project) => _getContent(context, project),
         _ => SizedBox.shrink(),
