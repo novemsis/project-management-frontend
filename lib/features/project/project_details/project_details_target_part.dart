@@ -25,6 +25,7 @@ class ProjectDetailsTargetPart extends StatelessWidget {
             ..._getExistingTargetContent(),
           ] else ...[
             InkWell(
+              // ToDo: add target
               onTap: () => print('add Target'),
               child: Container(
                 decoration: BoxDecoration(
@@ -68,95 +69,50 @@ class ProjectDetailsTargetPart extends StatelessWidget {
       SizedBox(height: TSpacings.p0),
       Row(
         children: [
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(
-                  Icons.check,
-                  size: TIconSizes.small,
-                ),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Spezifisch', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Spezifisch', _project.target!.isSmarterSpezifisch ?? false),
           SizedBox(width: TSpacings.p0half),
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Messbar', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Messbar', _project.target!.isSmarterMessbar ?? false),
           SizedBox(width: TSpacings.p0half),
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Ambitioniert', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Ambitioniert', _project.target!.isSmarterAmbitioniert ?? false),
         ],
       ),
       SizedBox(height: TSpacings.p0),
       Row(
         children: [
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Realistisch', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Realistisch', _project.target!.isSmarterRealistisch ?? false),
           SizedBox(width: TSpacings.p0half),
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Terminiert', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Terminiert', _project.target!.isSmarterTerminiert ?? false),
         ],
       ),
       SizedBox(height: TSpacings.p0),
       Row(
         children: [
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Emotionalisiert', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Emotionalisiert', _project.target!.isSmarterEmotionalisiert ?? false),
           SizedBox(width: TSpacings.p0half),
-          TextWrapper(
-            child: Row(
-              children: [
-                TIcon(Icons.check, size: TIconSizes.small),
-                SizedBox(width: TSpacings.p0quarter),
-                TTextXS('Ressourceneinsetzend', color: TColors.schemeGlobal, bold: true),
-              ],
-            ),
-            backgroundColor: TColors.schemeGlobalBackground,
-          ),
+          _getSmarterCriteria('Ressourceneinsetzend', _project.target!.isSmarterRessourceneinsetzend ?? false),
         ],
       ),
     ];
+  }
+
+  Widget _getSmarterCriteria(String text, bool fulfilled) {
+    return TextWrapper(
+      child: Row(
+        children: [
+          TIcon(
+            fulfilled ? Icons.check : Icons.close,
+            size: TIconSizes.small,
+            color: fulfilled ? TColors.schemeGlobal : TColors.inactive,
+          ),
+          SizedBox(width: TSpacings.p0quarter),
+          TTextXS(
+            text,
+            color: fulfilled ? TColors.schemeGlobal : TColors.inactive,
+            bold: true,
+          ),
+        ],
+      ),
+      backgroundColor: fulfilled ? TColors.schemeGlobalBackground : TColors.inactiveLight,
+    );
   }
 }
