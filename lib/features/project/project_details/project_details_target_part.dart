@@ -25,11 +25,12 @@ class ProjectDetailsTargetPart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TTextSmall('Ziel'),
-              TIcon(
-                Icons.chevron_right,
-                color: TColors.textPrimary,
-                size: TIconSizes.small,
-              ),
+              if (_project.target != null)
+                TIcon(
+                  Icons.chevron_right,
+                  color: TColors.textPrimary,
+                  size: TIconSizes.small,
+                ),
             ],
           ),
           if (_project.target != null) ...[

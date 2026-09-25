@@ -18,9 +18,9 @@ class ProjectDetailsProgressPart extends StatelessWidget {
   Widget build(BuildContext context) {
     final donePercentage = _project.doneRatio != null ? double.parse(_project.doneRatio!).round() * 100 : 0;
 
-    final bool isSmarter = _project.target?.isSmarter ?? false;
-    final bool isPlanned = isSmarter && (_project.plan?.isDefined ?? false);
-    final bool isDecided = isSmarter && isPlanned && (_project.decision?.carryThrough ?? false);
+    final bool isSmarter = _project.target != null;
+    final bool isPlanned = isSmarter && (_project.plan != null);
+    final bool isDecided = isSmarter && isPlanned && (_project.decision != null);
     final bool isTodoDone = isSmarter && isPlanned && isDecided && (!_project.toDos.any((toDo) => !toDo.isDone));
     final bool isChecked = isSmarter && isPlanned && isDecided && isTodoDone && donePercentage == 100;
 
