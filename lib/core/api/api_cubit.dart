@@ -56,6 +56,8 @@ class ApiCubit extends Cubit<ApiState> {
         emit(ApiState.error());
       }
     } on NoTokenException catch (_) {
+      // ToDo: handle no token (implement logout)
+      print('no token or token expired');
       emit(ApiState.tokenExpired());
     } catch (_) {
       emit(ApiState.error());

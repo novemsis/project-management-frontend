@@ -7,14 +7,14 @@ class BasicText extends StatelessWidget {
   final Color? color;
   final double fontSize;
   final int fontWeight;
-  final TextOverflow? textOverflow;
+  final TextOverflow textOverflow;
 
   const BasicText(
     this.data, {
     this.color = TColors.textPrimary,
     this.fontSize = TFontSizes.normal,
     this.fontWeight = 400,
-    this.textOverflow,
+    this.textOverflow = TextOverflow.ellipsis,
     super.key,
   });
 

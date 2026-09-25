@@ -52,7 +52,6 @@ class HomeProjectWidget extends StatelessWidget {
                             TTextNormal(
                               _project.title,
                               bold: true,
-                              textOverflow: TextOverflow.ellipsis,
                             ),
                             SizedBox(height: TSpacings.p0half),
                             TextWrapper(

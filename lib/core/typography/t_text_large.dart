@@ -17,6 +17,7 @@ class TTextLarge extends StatelessWidget {
       fontSize: TFontSizes.headline,
       fontWeight: _bold ? 700 : 400,
       color: _color,
+      textOverflow: TextOverflow.ellipsis,
     );
   }
 }
