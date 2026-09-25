@@ -43,7 +43,7 @@ class _TopBarBackButton extends StatelessWidget {
         ),
         child: TIcon(
           Icons.arrow_back_ios_new,
-          size: TIconSizes.small,
+          size: TIconSizes.xs,
         ),
       ),
     );

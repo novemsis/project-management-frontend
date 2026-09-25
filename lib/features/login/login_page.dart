@@ -6,7 +6,7 @@ import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/t_snackbar.dart';
 import '../../core/typography/t_text_large.dart';
-import '../../core/typography/t_text_small.dart';
+import '../../core/typography/t_text_xs.dart';
 import '../../core/widgets/t_elevated_button.dart';
 import '../../core/widgets/t_text_button.dart';
 import '../../core/widgets/t_text_field.dart';
@@ -56,7 +56,7 @@ class LoginPage extends ConsumerWidget {
                     TTextButton(
                       // ToDo: register account
                       onPressed: () => print('hi'),
-                      child: TTextSmall('register new Account'),
+                      child: TTextXS('register new Account'),
                     ),
                     TElevatedButton(
                       onPressed: () async {
@@ -65,7 +65,7 @@ class LoginPage extends ConsumerWidget {
                             .login(_formKey.currentState!.fields.first.value as String, _formKey.currentState!.fields.elementAt(1).value as String);
                         if (!result) TSnackBar.error(context, 'error on login');
                       },
-                      child: TTextSmall(
+                      child: TTextXS(
                         'Login',
                         color: TColors.elevatedButtonText,
                       ),

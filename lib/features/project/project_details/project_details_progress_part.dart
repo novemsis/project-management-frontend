@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
-import '../../../core/typography/t_text_normal_small.dart';
-import '../../../core/typography/t_text_xs.dart';
+import '../../../core/typography/t_text_small.dart';
+import '../../../core/typography/t_text_xxs.dart';
 import '../../../core/widgets/t_icon.dart';
 import '../../../core/widgets/text_wrapper.dart';
 import '../../../widgets/t_card.dart';
@@ -30,9 +30,9 @@ class ProjectDetailsProgressPart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TTextNormalSmall('Projektfortschritt'),
+              TTextSmall('Projektfortschritt'),
               TextWrapper(
-                child: TTextXS('${donePercentage}%', color: TColors.inactive),
+                child: TTextXXS('${donePercentage}%', color: TColors.inactive),
                 backgroundColor: TColors.inactiveLight,
               ),
             ],
@@ -44,7 +44,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
                 children: [
                   _getProgressIcon(Icons.check, isSmarter),
                   SizedBox(height: TSpacings.p0half),
-                  TTextXS('Ziel'),
+                  TTextXXS('Ziel'),
                 ],
               ),
               _getConnectingLine(
@@ -56,7 +56,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
                 children: [
                   _getProgressIcon(Icons.psychology, isPlanned),
                   SizedBox(height: TSpacings.p0half),
-                  TTextXS('Plan'),
+                  TTextXXS('Plan'),
                 ],
               ),
               _getConnectingLine(color: isDecided ? TColors.schemeGlobal : TColors.inactiveLight, indent: TSpacings.p0half),
@@ -64,7 +64,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
                 children: [
                   _getProgressIcon(Icons.crisis_alert, isDecided),
                   SizedBox(height: TSpacings.p0half),
-                  TTextXS('Entsch.'),
+                  TTextXXS('Entsch.'),
                 ],
               ),
               _getConnectingLine(color: isTodoDone ? TColors.schemeGlobal : TColors.inactiveLight),
@@ -72,7 +72,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
                 children: [
                   _getProgressIcon(Icons.checklist, isTodoDone),
                   SizedBox(height: TSpacings.p0half),
-                  TTextXS('ToDos'),
+                  TTextXXS('ToDos'),
                 ],
               ),
               _getConnectingLine(color: isChecked ? TColors.schemeGlobal : TColors.inactiveLight),
@@ -80,7 +80,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
                 children: [
                   _getProgressIcon(Icons.event_repeat, isChecked),
                   SizedBox(height: TSpacings.p0half),
-                  TTextXS('Check'),
+                  TTextXXS('Check'),
                 ],
               ),
             ],
@@ -99,7 +99,7 @@ class ProjectDetailsProgressPart extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(TSpacings.p0half, TSpacings.p0half, TSpacings.p0half, TSpacings.p0half),
       child: TIcon(
         icon,
-        size: TIconSizes.small,
+        size: TIconSizes.xs,
         color: isFulfilled ? TColors.textWhite : TColors.inactiveLight,
       ),
     );

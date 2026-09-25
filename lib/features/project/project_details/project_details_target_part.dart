@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
-import '../../../core/typography/t_text_normal_small.dart';
-import '../../../core/typography/t_text_xs.dart';
+import '../../../core/typography/t_text_small.dart';
+import '../../../core/typography/t_text_xxs.dart';
 import '../../../core/widgets/t_icon.dart';
 import '../../../core/widgets/text_wrapper.dart';
 import '../../../widgets/t_card.dart';
@@ -17,9 +17,21 @@ class ProjectDetailsTargetPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TCard(
+      // ToDo: implement target dialog (only if target exists)
+      onTap: () => print('open target dialog'),
       child: Column(
         children: [
-          Row(children: [TTextNormalSmall('Ziel')]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TTextSmall('Ziel'),
+              TIcon(
+                Icons.chevron_right,
+                color: TColors.textPrimary,
+                size: TIconSizes.small,
+              ),
+            ],
+          ),
           if (_project.target != null) ...[
             SizedBox(height: TSpacings.p0),
             ..._getExistingTargetContent(),
@@ -37,9 +49,9 @@ class ProjectDetailsTargetPart extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      TIcon(Icons.add, size: TIconSizes.small),
+                      TIcon(Icons.add, size: TIconSizes.xs),
                       SizedBox(width: TSpacings.p0),
-                      TTextXS('Ziel hinzufügen', color: TColors.schemeGlobal),
+                      TTextXXS('Ziel hinzufügen', color: TColors.schemeGlobal),
                     ],
                   ),
                 ),
@@ -60,8 +72,8 @@ class ProjectDetailsTargetPart extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TTextXS('Definition', color: TColors.schemeGlobal),
-              TTextXS(definition),
+              TTextXXS('Definition', color: TColors.schemeGlobal),
+              TTextXXS(definition),
             ],
           ),
         ],
@@ -101,11 +113,11 @@ class ProjectDetailsTargetPart extends StatelessWidget {
         children: [
           TIcon(
             fulfilled ? Icons.check : Icons.close,
-            size: TIconSizes.small,
+            size: TIconSizes.xs,
             color: fulfilled ? TColors.schemeGlobal : TColors.inactive,
           ),
           SizedBox(width: TSpacings.p0quarter),
-          TTextXS(
+          TTextXXS(
             text,
             color: fulfilled ? TColors.schemeGlobal : TColors.inactive,
             bold: true,

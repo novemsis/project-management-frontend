@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_large.dart';
-import '../../core/typography/t_text_small.dart';
+import '../../core/typography/t_text_xs.dart';
 import '../../core/widgets/t_icon.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
 import '../project/project_model.dart';
@@ -43,7 +43,7 @@ class HomePage extends ConsumerWidget {
           children: [
             Container(
               width: 250,
-              child: TTextSmall(
+              child: TTextXS(
                 'Hier findest du eine Übersicht über all deine VisionFlow Projekte',
               ),
             ),

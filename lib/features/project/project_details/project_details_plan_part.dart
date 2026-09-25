@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
-import '../../../core/typography/t_text_normal_small.dart';
-import '../../../core/typography/t_text_xs.dart';
+import '../../../core/typography/t_text_small.dart';
+import '../../../core/typography/t_text_xxs.dart';
 import '../../../core/widgets/t_icon.dart';
 import '../../../widgets/t_card.dart';
 import '../project_model.dart';
@@ -16,9 +16,21 @@ class ProjectDetailsPlanPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TCard(
+      // ToDo: implement plan dialog (only if plan exists)
+      onTap: () => print('open plan dialog'),
       child: Column(
         children: [
-          Row(children: [TTextNormalSmall('Plan')]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TTextSmall('Plan'),
+              TIcon(
+                Icons.chevron_right,
+                color: TColors.textPrimary,
+                size: TIconSizes.small,
+              ),
+            ],
+          ),
           if (_project.plan != null) ...[
             SizedBox(height: TSpacings.p0),
             _getExistingPlanContend(),
@@ -36,9 +48,9 @@ class ProjectDetailsPlanPart extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      TIcon(Icons.add, size: TIconSizes.small),
+                      TIcon(Icons.add, size: TIconSizes.xs),
                       SizedBox(width: TSpacings.p0),
-                      TTextXS('Plan hinzufügen', color: TColors.schemeGlobal),
+                      TTextXXS('Plan hinzufügen', color: TColors.schemeGlobal),
                     ],
                   ),
                 ),
@@ -59,14 +71,14 @@ class ProjectDetailsPlanPart extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TTextXS('Strategische Definition', color: TColors.schemeGlobal),
-              TTextXS(_project.plan!.strategicDefinition != null ? '"${_project.plan!.strategicDefinition!.trim()}"' : '-'),
+              TTextXXS('Strategische Definition', color: TColors.schemeGlobal),
+              TTextXXS(_project.plan!.strategicDefinition != null ? '"${_project.plan!.strategicDefinition!.trim()}"' : '-'),
               SizedBox(height: TSpacings.p0),
-              TTextXS('Taktische Definition', color: TColors.schemeGlobal),
-              TTextXS(_project.plan!.tacticalDefinition != null ? '"${_project.plan!.tacticalDefinition!.trim()}"' : '-'),
+              TTextXXS('Taktische Definition', color: TColors.schemeGlobal),
+              TTextXXS(_project.plan!.tacticalDefinition != null ? '"${_project.plan!.tacticalDefinition!.trim()}"' : '-'),
               SizedBox(height: TSpacings.p0),
-              TTextXS('Operative Definition', color: TColors.schemeGlobal),
-              TTextXS(_project.plan!.operationalDefinition != null ? '"${_project.plan!.operationalDefinition!.trim()}"' : '-'),
+              TTextXXS('Operative Definition', color: TColors.schemeGlobal),
+              TTextXXS(_project.plan!.operationalDefinition != null ? '"${_project.plan!.operationalDefinition!.trim()}"' : '-'),
             ],
           ),
         ),

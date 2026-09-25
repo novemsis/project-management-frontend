@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 't_colors.dart';
 import 't_sizes.dart';
-import 'typography/t_text_normal_small.dart';
+import 'typography/t_text_small.dart';
 import 'widgets/t_icon.dart';
 
 class TSnackBar {
@@ -58,7 +58,7 @@ class TSnackBar {
               ),
               const SizedBox(width: TSpacings.p1half),
               Expanded(
-                child: TTextNormalSmall(
+                child: TTextSmall(
                   message,
                   color: TColors.textPrimary,
                 ),

@@ -3,8 +3,8 @@ import 'package:intl/intl.dart';
 
 import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
-import '../../../core/typography/t_text_normal_small.dart';
-import '../../../core/typography/t_text_xs.dart';
+import '../../../core/typography/t_text_small.dart';
+import '../../../core/typography/t_text_xxs.dart';
 import '../../../core/widgets/t_icon.dart';
 import '../../../core/widgets/text_wrapper.dart';
 import '../../../widgets/t_card.dart';
@@ -44,10 +44,10 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TTextXS('Projekt', bold: true, color: TColors.schemeGlobal),
+                      TTextXXS('Projekt', bold: true, color: TColors.schemeGlobal),
                       ConstrainedBox(
                         constraints: BoxConstraints(maxWidth: 140),
-                        child: TTextNormalSmall(
+                        child: TTextSmall(
                           _project.title,
                           bold: true,
                         ),
@@ -55,7 +55,7 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                       SizedBox(height: TSpacings.p0half),
                       TextWrapper(
                         backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
-                        child: TTextXS(
+                        child: TTextXXS(
                           _project.isActive() ? 'Aktiv' : 'Inaktiv',
                           color: _project.isActive() ? TColors.success : TColors.inactive,
                           bold: true,
@@ -75,10 +75,10 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                     children: [
                       TIcon(
                         Icons.edit_outlined,
-                        size: TIconSizes.small,
+                        size: TIconSizes.xs,
                       ),
                       SizedBox(width: TSpacings.p0half),
-                      TTextXS('Bearbeiten', color: TColors.schemeGlobal),
+                      TTextXXS('Bearbeiten', color: TColors.schemeGlobal),
                     ],
                   ),
                 ),
@@ -92,11 +92,11 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(TSpacings.p8, 0, TSpacings.p0half, 0),
                 child: TIcon(
                   Icons.calendar_today_outlined,
-                  size: TIconSizes.small,
+                  size: TIconSizes.xs,
                   color: TColors.textSecondary,
                 ),
               ),
-              TTextXS(
+              TTextXXS(
                 _getProjectRange(_project),
                 color: TColors.textSecondary,
               ),

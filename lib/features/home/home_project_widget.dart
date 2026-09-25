@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_normal.dart';
-import '../../core/typography/t_text_small.dart';
+import '../../core/typography/t_text_xs.dart';
 import '../../core/widgets/t_divider.dart';
 import '../../core/widgets/t_icon.dart';
 import '../../core/widgets/text_wrapper.dart';
@@ -56,7 +56,7 @@ class HomeProjectWidget extends StatelessWidget {
                             SizedBox(height: TSpacings.p0half),
                             TextWrapper(
                               backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
-                              child: TTextSmall(
+                              child: TTextXS(
                                 _project.isActive() ? 'Aktiv' : 'Inaktiv',
                                 color: _project.isActive() ? TColors.success : TColors.inactive,
                                 bold: true,
@@ -74,39 +74,39 @@ class HomeProjectWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TTextSmall('Ziel:'),
+                  TTextXS('Ziel:'),
                   if (_project.target != null && _project.target!.isSmarter)
                     SuccessIcon()
                   else if (_project.target != null)
                     WarningIcon()
                   else
-                    TTextSmall('-'),
+                    TTextXS('-'),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TTextSmall('Plan:'),
+                  TTextXS('Plan:'),
                   if (_project.plan != null && _project.plan!.isDefined)
                     SuccessIcon()
                   else if (_project.plan != null)
                     WarningIcon()
                   else
-                    TTextSmall('-'),
+                    TTextXS('-'),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TTextSmall('Entschluss:'),
-                  if (_project.decision != null && _project.decision!.carryThrough) SuccessIcon() else TTextSmall('-'),
+                  TTextXS('Entschluss:'),
+                  if (_project.decision != null && _project.decision!.carryThrough) SuccessIcon() else TTextXS('-'),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TTextSmall('Umsetzung:'),
-                  if (doneRatio != null) TTextSmall('${doneRatio * 100}%') else TTextSmall('-'),
+                  TTextXS('Umsetzung:'),
+                  if (doneRatio != null) TTextXS('${doneRatio * 100}%') else TTextXS('-'),
                 ],
               ),
               if (_project.nextCheck != null && checkDateIsOver != null) ...[
@@ -114,7 +114,7 @@ class HomeProjectWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TTextSmall('Kontrolle:'),
+                    TTextXS('Kontrolle:'),
                     TextWrapper(
                       backgroundColor: checkDateIsOver ? TColors.errorLight : TColors.successLight,
                       child: Row(
@@ -123,11 +123,11 @@ class HomeProjectWidget extends StatelessWidget {
                             padding: const EdgeInsets.only(right: TSpacings.p0half),
                             child: TIcon(
                               Icons.calendar_today_outlined,
-                              size: TIconSizes.small,
+                              size: TIconSizes.xs,
                               color: checkDateIsOver ? TColors.error : TColors.success,
                             ),
                           ),
-                          TTextSmall(
+                          TTextXS(
                             DateFormat('dd.MM.yyyy').format(_project.nextCheck!),
                             color: checkDateIsOver ? TColors.error : TColors.success,
                           ),
@@ -171,7 +171,7 @@ class SuccessIcon extends IconWrapper {
         color: TColors.successLight,
         icon: TIcon(
           Icons.check,
-          size: TIconSizes.small,
+          size: TIconSizes.xs,
           color: TColors.success,
         ),
       );
@@ -183,7 +183,7 @@ class WarningIcon extends IconWrapper {
         color: TColors.warningLight,
         icon: TIcon(
           Icons.warning_amber_rounded,
-          size: TIconSizes.small,
+          size: TIconSizes.xs,
           color: TColors.warning,
         ),
       );
