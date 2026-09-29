@@ -7,10 +7,12 @@ import '../../../core/t_snackbar.dart';
 import '../../../core/wrapper/basic_layout_wrapper.dart';
 import '../project_model.dart';
 import 'project_details_cubit.dart';
+import 'project_details_decision_part.dart';
 import 'project_details_general_part.dart';
 import 'project_details_plan_part.dart';
 import 'project_details_progress_part.dart';
 import 'project_details_target_part.dart';
+import 'project_details_todo_part.dart';
 
 class ProjectDetailsPage extends ConsumerWidget {
   final String _projectId;
@@ -40,6 +42,11 @@ class ProjectDetailsPage extends ConsumerWidget {
         ProjectDetailsTargetPart(project),
         SizedBox(height: TSpacings.p0),
         ProjectDetailsPlanPart(project),
+        SizedBox(height: TSpacings.p0),
+        ProjectDetailsDecisionPart(project),
+        SizedBox(height: TSpacings.p0),
+        ProjectDetailsTodoPart(project),
+        SizedBox(height: TSpacings.p0),
       ],
     );
   }
