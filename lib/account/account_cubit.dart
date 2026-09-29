@@ -27,7 +27,7 @@ class AccountCubit extends Cubit<AccountState> {
   AccountCubit({required this._apiCubit, required this._authTokenStore}) : super(AccountState.none()) {
     isLoggedIn();
     _apiCubit.stream.listen((state) {
-      if (state == ApiStateTokenExpired) {
+      if (state is ApiStateTokenExpired) {
         clearAccountData();
       }
     });
