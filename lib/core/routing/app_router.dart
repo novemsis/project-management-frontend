@@ -5,6 +5,7 @@ import '../../account/account_cubit.dart';
 import '../../account/account_state.dart';
 import '../../features/home/home_page.dart';
 import '../../features/login/login_page.dart';
+import '../../features/project/project_create/project_create_page.dart';
 import '../../features/project/project_details/project_details_page.dart';
 import 'account_router_notifier.dart';
 
@@ -52,6 +53,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           final projectId = state.pathParameters['projectId']!;
           return ProjectDetailsPage(projectId);
         },
+      ),
+      GoRoute(
+        path: '/create-project',
+        builder: (context, state) => ProjectCreatePage(),
       ),
     ],
   );

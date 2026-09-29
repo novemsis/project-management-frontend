@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
@@ -21,13 +22,13 @@ class HomePage extends ConsumerWidget {
       title: null,
       refreshAction: ref.read(HomeCubit.provider.bloc).loadProjects,
       child: switch (ref.watch(HomeCubit.provider)) {
-        HomeStateSuccess(:final projects) => _getContent(projects, ref),
+        HomeStateSuccess(:final projects) => _getContent(projects, ref, context),
         _ => SizedBox.shrink(),
       },
     );
   }
 
-  Widget _getContent(List<ProjectModel> projects, WidgetRef ref) {
+  Widget _getContent(List<ProjectModel> projects, WidgetRef ref, BuildContext context) {
     return Column(
       children: [
         Row(
@@ -55,7 +56,7 @@ class HomePage extends ConsumerWidget {
           padding: const EdgeInsets.only(bottom: TSpacings.p0),
           child: IconButton(
             // ToDo: add new Project
-            onPressed: () => print('pressed on add new Project'),
+            onPressed: () => context.push('/create-project'),
             icon: TIcon(Icons.add_circle_outline, color: TColors.textPrimary),
             iconSize: TIconSizes.normal,
           ),
