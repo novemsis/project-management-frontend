@@ -8,7 +8,6 @@ class NoTokenException implements Exception {
 }
 
 typedef GetAuthorizationHeaderCb = Future<String?> Function();
-typedef GetAuthorizationHeaderExpirationCb = Future<DateTime?> Function();
 
 class AuthorizationHeaderInterceptor implements Interceptor {
   final GetAuthorizationHeaderCb getAuthorizationHeader;
