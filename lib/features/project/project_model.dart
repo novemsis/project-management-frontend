@@ -1,6 +1,7 @@
 class ProjectModel {
   final String id;
   final String title;
+  final String? description;
   final DateTime? projectStart;
   final DateTime? projectEnd;
   final DateTime createdAt;
@@ -15,6 +16,7 @@ class ProjectModel {
   const ProjectModel({
     required this.id,
     required this.title,
+    required this.description,
     required this.projectStart,
     required this.projectEnd,
     required this.createdAt,

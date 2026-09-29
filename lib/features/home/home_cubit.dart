@@ -45,6 +45,7 @@ class HomeCubit extends Cubit<HomeState> {
     return ProjectModel(
       id: body['id'] as String,
       title: body['title'] as String,
+      description: body['description'] as String?,
       projectStart: body['project_start'] != null ? DateTime.parse(body['project_start'] as String) as DateTime? : null,
       projectEnd: body['project_end'] != null ? DateTime.parse(body['project_end'] as String) : null,
       createdAt: DateTime.parse(body['created_at'] as String),

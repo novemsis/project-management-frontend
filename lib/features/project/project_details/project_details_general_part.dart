@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
 import '../../../core/typography/t_text_small.dart';
+import '../../../core/typography/t_text_xs.dart';
 import '../../../core/typography/t_text_xxs.dart';
 import '../../../core/widgets/t_icon.dart';
 import '../../../core/widgets/text_wrapper.dart';
@@ -47,12 +48,21 @@ class ProjectDetailsGeneralPart extends StatelessWidget {
                       TTextXXS('Projekt', bold: true, color: TColors.schemeGlobal),
                       ConstrainedBox(
                         constraints: BoxConstraints(maxWidth: 140),
-                        child: TTextSmall(
-                          _project.title,
-                          bold: true,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TTextSmall(
+                              _project.title,
+                              bold: true,
+                            ),
+                            if (_project.description != null) ...[
+                              SizedBox(height: TSpacings.p0quarter),
+                              TTextXS(_project.description!),
+                            ],
+                          ],
                         ),
                       ),
-                      SizedBox(height: TSpacings.p0half),
+                      SizedBox(height: TSpacings.p0),
                       TextWrapper(
                         backgroundColor: _project.isActive() ? TColors.successLight : TColors.inactiveLight,
                         child: TTextXXS(
