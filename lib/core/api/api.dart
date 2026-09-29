@@ -7,6 +7,7 @@ import 'package:riverpod/riverpod.dart';
 import '../../account/auth_token_store.dart';
 import '../app_config.dart';
 import 'authorization_header_interceptor.dart';
+import 'authorization_response_interceptor.dart';
 
 const _clientName = 'VisionFlow';
 
@@ -18,6 +19,7 @@ final authenticatedApiProvider = Provider((ref) {
       AuthorizationHeaderInterceptor(
         getAuthorizationHeader: () => ref.read(authTokenStoreProvider).authorizationHeader,
       ),
+      AuthorizationResponseInterceptor(),
     ],
   );
   ref.onDispose(() => backendApi.dispose());

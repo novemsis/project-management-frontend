@@ -6,6 +6,7 @@ import 'package:riverbloc/riverbloc.dart';
 import 'api.dart';
 import 'api_states.dart';
 import 'authorization_header_interceptor.dart';
+import 'authorization_response_interceptor.dart';
 import 'request_body.dart';
 
 class ApiCubit extends Cubit<ApiState> {
@@ -56,8 +57,8 @@ class ApiCubit extends Cubit<ApiState> {
         emit(ApiState.error());
       }
     } on NoTokenException catch (_) {
-      // ToDo: handle no token (implement logout)
-      print('no token or token expired');
+      emit(ApiState.tokenExpired());
+    } on TokenExpiredException catch (_) {
       emit(ApiState.tokenExpired());
     } catch (_) {
       emit(ApiState.error());
