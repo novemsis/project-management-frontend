@@ -51,7 +51,12 @@ class HomePage extends ConsumerWidget {
           ],
         ),
         SizedBox(height: TSpacings.p1),
-        ...projects.map((project) => HomeProjectWidget(project)),
+        ...projects.map(
+          (project) => Padding(
+            padding: const EdgeInsets.only(bottom: TSpacings.p1),
+            child: HomeProjectWidget(project),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.only(bottom: TSpacings.p0),
           child: IconButton(

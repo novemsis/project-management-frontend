@@ -46,11 +46,11 @@ class AccountCubit extends Cubit<AccountState> {
       body: LoginDto(username: username, password: password),
     );
 
-    if (!(response?.isSuccessful ?? false) || response?.body == null) {
+    if (!(response?.isSuccessful ?? false) || response!.body == null) {
       return false;
     }
 
-    final body = jsonDecode(response!.body.toString()) as Map<String, dynamic>;
+    final body = jsonDecode(response.body.toString()) as Map<String, dynamic>;
     if (!body.containsKey('token') || !body.containsKey('expires_at') || DateTime.tryParse(body['expires_at'] as String) == null) {
       return false;
     }

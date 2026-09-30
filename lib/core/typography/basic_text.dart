@@ -8,6 +8,7 @@ class BasicText extends StatelessWidget {
   final double fontSize;
   final int fontWeight;
   final TextOverflow textOverflow;
+  final TextAlign _textAlign;
 
   const BasicText(
     this.data, {
@@ -15,6 +16,7 @@ class BasicText extends StatelessWidget {
     this.fontSize = TFontSizes.normal,
     this.fontWeight = 400,
     this.textOverflow = TextOverflow.ellipsis,
+    this._textAlign = TextAlign.start,
     super.key,
   });
 
@@ -29,6 +31,7 @@ class BasicText extends StatelessWidget {
         fontSize: 20 * fontSize,
         overflow: textOverflow,
       ),
+      textAlign: _textAlign,
     );
   }
 }
