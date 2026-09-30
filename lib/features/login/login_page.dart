@@ -7,11 +7,11 @@ import '../../core/t_sizes.dart';
 import '../../core/t_snackbar.dart';
 import '../../core/typography/t_text_large.dart';
 import '../../core/typography/t_text_xs.dart';
-import '../../core/widgets/t_elevated_button.dart';
-import '../../core/widgets/t_text_button.dart';
-import '../../core/widgets/t_text_field.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
-import '../../widgets/t_card.dart';
+import '../widgets/t_card.dart';
+import '../widgets/t_elevated_button.dart';
+import '../widgets/t_text_button.dart';
+import '../widgets/t_text_field.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});

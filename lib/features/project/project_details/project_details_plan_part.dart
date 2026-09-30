@@ -4,8 +4,8 @@ import '../../../core/t_colors.dart';
 import '../../../core/t_sizes.dart';
 import '../../../core/typography/t_text_small.dart';
 import '../../../core/typography/t_text_xxs.dart';
-import '../../../core/widgets/t_icon.dart';
-import '../../../widgets/t_card.dart';
+import '../../widgets/t_card.dart';
+import '../../widgets/t_icon.dart';
 import '../project_model.dart';
 
 class ProjectDetailsPlanPart extends StatelessWidget {

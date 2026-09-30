@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../t_colors.dart';
+import '../../core/t_colors.dart';
 
 class TElevatedButton extends StatelessWidget {
   final void Function()? _onPressed;

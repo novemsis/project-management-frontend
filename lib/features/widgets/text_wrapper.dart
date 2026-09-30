@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../t_sizes.dart';
+import '../../core/t_sizes.dart';
 
 class TextWrapper extends StatelessWidget {
   final Widget _child;

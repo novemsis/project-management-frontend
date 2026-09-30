@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../t_colors.dart';
-import '../t_sizes.dart';
+import '../../core/t_colors.dart';
+import '../../core/t_sizes.dart';
 
 class TIcon extends StatelessWidget {
   final IconData _icon;

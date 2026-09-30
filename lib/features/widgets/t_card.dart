@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../core/t_colors.dart';
-import '../core/t_sizes.dart';
+import '../../core/t_colors.dart';
+import '../../core/t_sizes.dart';
 
 class TCard extends StatelessWidget {
   final Widget child;

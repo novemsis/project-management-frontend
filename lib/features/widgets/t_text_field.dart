@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../t_colors.dart';
-import '../t_sizes.dart';
-import '../typography/t_text_small.dart';
+import '../../core/t_colors.dart';
+import '../../core/t_sizes.dart';
+import '../../core/typography/t_text_small.dart';
 
 class TTextfield extends StatelessWidget {
   final String? _labelText;

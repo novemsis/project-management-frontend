@@ -6,9 +6,9 @@ import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_large.dart';
 import '../../core/typography/t_text_xs.dart';
-import '../../core/widgets/t_icon.dart';
 import '../../core/wrapper/basic_layout_wrapper.dart';
 import '../project/project_model.dart';
+import '../widgets/t_icon.dart';
 import 'home_cubit.dart';
 import 'home_project_widget.dart';
 

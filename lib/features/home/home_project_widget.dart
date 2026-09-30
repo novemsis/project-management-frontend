@@ -6,11 +6,11 @@ import '../../core/t_colors.dart';
 import '../../core/t_sizes.dart';
 import '../../core/typography/t_text_normal.dart';
 import '../../core/typography/t_text_xs.dart';
-import '../../core/widgets/t_divider.dart';
-import '../../core/widgets/t_icon.dart';
-import '../../core/widgets/text_wrapper.dart';
-import '../../widgets/t_card.dart';
 import '../project/project_model.dart';
+import '../widgets/t_card.dart';
+import '../widgets/t_divider.dart';
+import '../widgets/t_icon.dart';
+import '../widgets/text_wrapper.dart';
 
 class HomeProjectWidget extends StatelessWidget {
   final ProjectModel _project;

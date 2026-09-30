@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../features/widgets/t_icon.dart';
 import '../t_colors.dart';
 import '../t_sizes.dart';
 import '../typography/t_text_large.dart';
-import 't_icon.dart';
 
 class TopBar extends StatelessWidget {
   final String? title;

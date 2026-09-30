@@ -7,10 +7,10 @@ import '../../../core/t_sizes.dart';
 import '../../../core/t_snackbar.dart';
 import '../../../core/typography/t_text_large.dart';
 import '../../../core/typography/t_text_normal.dart';
-import '../../../core/widgets/t_icon.dart';
-import '../../../core/widgets/t_text_field.dart';
 import '../../../core/wrapper/basic_layout_wrapper.dart';
-import '../../../widgets/t_card.dart';
+import '../../widgets/t_card.dart';
+import '../../widgets/t_icon.dart';
+import '../../widgets/t_text_field.dart';
 import 'project_create_cubit.dart';
 
 class ProjectCreatePage extends ConsumerWidget {

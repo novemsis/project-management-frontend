@@ -6,9 +6,9 @@ import '../../../core/t_sizes.dart';
 import '../../../core/typography/t_text_small.dart';
 import '../../../core/typography/t_text_xs.dart';
 import '../../../core/typography/t_text_xxs.dart';
-import '../../../core/widgets/t_icon.dart';
-import '../../../core/widgets/text_wrapper.dart';
-import '../../../widgets/t_card.dart';
+import '../../widgets/t_card.dart';
+import '../../widgets/t_icon.dart';
+import '../../widgets/text_wrapper.dart';
 import '../project_model.dart';
 
 class ProjectDetailsGeneralPart extends StatelessWidget {

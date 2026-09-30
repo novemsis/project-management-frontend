@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../t_sizes.dart';
+import '../../core/t_sizes.dart';
 
 class TTextButton extends StatelessWidget {
   final void Function()? _onPressed;
